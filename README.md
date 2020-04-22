@@ -3,7 +3,17 @@ Back in January 2010, the NYC District Attorney;s office implemented a program d
 
 ## **Summary**
 
-> This memo recommends continuing the program implemented by NYC District Attorney’s (DA’s) Oﬃce after evaluating its impact on the felony re-arrest rate employing the probit regression model on the provided data. Data contained information on the crime arrest made from 2008 – 2011, including their crime-type (felony, misdemeanor), arrest-date, treatment group (treatment, control), and demographics (gender, age, precinct). Exploratory data analysis on both crime and demographic-based features offers a graphical and tabular description of the data and its distribution. Further, statistical tests spearman, Mann- Whitney, chi-square and independent t-test, measures the correlation and association between the indicators depending upon their types. Keeping the analytical test results and assumptions in mind, I employed probit regression to find the significant signs influencing the chances of felony re-arrest rate in one year after January 2010. The model demonstrated that individuals in the treatment groups have a 16.7 percent lower probability of committing a felony re-arrest rate in the next year, holding other variables constant. People arrested with a misdemeanor crime when provided with onspot intervention on average have an approximate 23 percent higher chance of felony re-arrest without any other variable influence. Similarly, age, irrespective of other indicators, increases the likelihood of felony re-arrest by 3.5 percent. 
+Evaluating impact of an program requires certain necessary steps before conclusion. This section describes all the steps taken while evaluating the
+
+1. Datasets
+> There are three datasets required in this analysis
+>> **arrest.csv**
+>>> *Contains information on the arrests made from 2008 to 2011*
+>>>> a) person_id : Unique identification for each individuals
+>>>> a) arrest_date : Arrest Date
+>>>> a) arrest_id : Arrest ID for each arrest made. Note, there are more than one arrest id for each person id, if arrested more than once
+>>>> a) law_code : Type of Crime (Misdemeanor and Felony)
+
 
 ## Getting Started
 
