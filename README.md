@@ -9,10 +9,10 @@ Evaluating impact of an program requires certain necessary steps before conclusi
 > There are three datasets required in this analysis
 >> **arrest.csv**
 >>> *Contains information on the arrests made from 2008 to 2011*
->>>> - person_id : Unique identification for each individuals
->>>> - arrest_date : Arrest Date
->>>> - arrest_id : Arrest ID for each arrest made. Note, there are more than one arrest id for each person   id, if arrested more than once
->>>> - law_code : Type of Crime (Misdemeanor and Felony)
+>>>> - **person_id** : Unique identification for each individuals
+>>>> - **arrest_date** : Arrest Date
+>>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each    >>>>                   person id, if arrested more than once
+>>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
 
 
 ## Getting Started
