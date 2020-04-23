@@ -33,7 +33,7 @@ Data preprocessing is the most essential step before getting into exploratory da
 >>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each person id, if arrested more than once
 >>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
 
-![](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png =100*20)
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png" alt="drawing" width="200"/>
 
 >> *demo.csv*
 >>> *Demographic information of the people arrested*
