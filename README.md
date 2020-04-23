@@ -24,16 +24,16 @@ Data preprocessing is the most essential step before getting into exploratory da
 1.  Binary outcome that measures any felony re-arrest in a 1-year period following the arrest
 
 
-- *** Step 1: Read the datasets*** <br>
+### **Step 1: Read the datasets** <br>
 >There are three datasets required in this analysis. The dataset belong to the Crime and Education Lab at UChicago. They come along with the repository when cloned in the Desktop.
->> *arrest.csv*
+>> **arrest.csv**
 >>> *Contains information on the arrests made from 2008 to 2011*
 >>>> - **person_id** : Unique identification for each individuals
 >>>> - **arrest_date** : Arrest Date
->>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each    >>>>                   person id, if arrested more than once
+>>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each person id, if arrested more than once
 >>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
 
-![arrests_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png = 50*50)
+![](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png =100*20)
 
 >> *demo.csv*
 >>> *Demographic information of the people arrested*
