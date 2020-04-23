@@ -6,9 +6,9 @@ Back in January 2010, the NYC District Attorney's office implemented a program d
 Data contains information on the crime arrest made from 2008 – 2011, including their crime-type (felony, misdemeanor), arrest-date, treatment group (treatment, control), and demographics (gender, age, precinct). Exploratory data analysis on both crime and demographic-based features offers a graphical and tabular description of the data and its distribution. Further, statistical tests spearman, Mann- Whitney, chi-square and independent t-test, measures the correlation and association between the indicators depending upon their types. Keeping the analytical test results and assumptions in mind, the analysis employs probit regression to find the significant signs influencing the chances of felony re-arrest rate in one year after January 2010. The model demonstrated that individuals in the treatment groups have a 16.7 percent lower probability of committing a felony re-arrest rate in the next year, holding other variables constant. People arrested with a misdemeanor crime when provided with onspot intervention on average have an approximate 23 percent higher chance of felony re-arrest without any other variable influence. Similarly, age, irrespective of other indicators, increases the likelihood of felony re-arrest by 3.5 percent.
 
 # **Instructions**
-## **data_preprocessing.csv**
+## **Script 1: data_preprocessing.csv**
 Data preprocessing is the most essential step before getting into exploratory data analysis, statistical analysis and probit modelling. Here, we are taking necessary steps to calculate all the important covariates that have the potential to influence the probability of a person provided intervention after January 2010 to again commit a felony crime apart from just being in the treatment group. Moreover, through data preprocessing, we find our dependent outcome variable. It is a dummy variable ( 0: the arrested person  did not commit a crime in one year after January 2010 , 1: the arrested individual did commit a crime in one year after January 2010 ). After data wrangling and merging along with few other operation we should have the following columns in our dataframe.
-> **Covariates**
+> *Covariates*
 1. age
 2. Gender
 3. Home precincts
@@ -17,14 +17,14 @@ Data preprocessing is the most essential step before getting into exploratory da
 6. Number of prior misdemeanor arrests (in the last 6 months)
 7. Number of prior felony arrests (in the last 6 months)
 
-> **Independent Variable**
+> *Independent Variable*
 1. treatment_status
 
-> **Dependent Variable**
+> *Dependent Variable*
 1.  Binary outcome that measures any felony re-arrest in a 1-year period following the arrest
 
 
-1. ***Read the datasets*** <br>
+- *** Step 1: Read the datasets*** <br>
 >There are three datasets required in this analysis. The dataset belong to the Crime and Education Lab at UChicago. They come along with the repository when cloned in the Desktop.
 >> *arrest.csv*
 >>> *Contains information on the arrests made from 2008 to 2011*
@@ -33,7 +33,7 @@ Data preprocessing is the most essential step before getting into exploratory da
 >>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each    >>>>                   person id, if arrested more than once
 >>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
 
-![arrests_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png)
+![arrests_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png=50*50)
 
 >> *demo.csv*
 >>> *Demographic information of the people arrested*
