@@ -9,15 +9,16 @@ Data contains information on the crime arrest made from 2008 – 2011, including
 ## **data_preprocessing.csv**
 1. ***Read the datasets*** <br>
 >There are three datasets required in this analysis. The dataset belong to the Crime and Education Lab at UChicago. They come along with the repository when cloned in the Desktop.
->> **arrest.csv**
+>> *arrest.csv*
 >>> *Contains information on the arrests made from 2008 to 2011*
 >>>> - **person_id** : Unique identification for each individuals
 >>>> - **arrest_date** : Arrest Date
 >>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each    >>>>                   person id, if arrested more than once
 >>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
+<br>
 ![arrests_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png)
 
->> **demo.csv**
+>> *demo.csv*
 >>> *Demographic information of the people arrested*
 >>>> - **person_id** : Unique identification for each individuals
 >>>> - **gender** : Gender of the person arrested
