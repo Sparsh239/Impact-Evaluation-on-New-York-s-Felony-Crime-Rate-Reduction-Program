@@ -28,10 +28,9 @@ There are three datasets required in this analysis:
 >>>> - **precinct** : Precinct number of the place where the arrests took place.
 >>>> - **Treatment Status** : Treatment Status of the Precinct (Treatment or Control). Certain precincts >>>>                          were provided treatment and others were part of control group
 2. Calculate the date 6 months ago and 2 years ago
->>>> `from dateutil.relativedelta import * <br>
-dataframe['date_column'] = pd.to_datetime(dataframe['date_column'] ,format='%Y/%m/%d')
-# Converts the arrest date into a date time format
-dataframe['date_column_six_months_ago'] = dataframe['date_column'].apply(lambda x:x - relativedelta(months = 6)) # `
+>>>> `from dateutil.relativedelta import *``
+>>>> `dataframe['date_column'] = pd.to_datetime(dataframe['date_column'] ,format='%Y/%m/%d')``
+>>>> `dataframe['date_column_six_months_ago'] = dataframe['date_column'].apply(lambda x:x relativedelta(months = 6))`
 ##
 
 
