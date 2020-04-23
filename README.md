@@ -16,7 +16,7 @@ Data contains information on the crime arrest made from 2008 – 2011, including
 >>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each    >>>>                   person id, if arrested more than once
 >>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
 
-        ![arrests_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png)
+![arrests_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png)
 
 >> *demo.csv*
 >>> *Demographic information of the people arrested*
