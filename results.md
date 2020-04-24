@@ -11,7 +11,7 @@ The post-implementation data considers 3662 observations (one observation for ea
 
 Each of the treatment group and the control group must have certain conditions validated before moving into the statistical evaluation. Since numerical variables are discrete except age, it is reasonable to calculate the correlation between them through the “Spearman” correlation coefficient. The test doesn’t show any critical relationship except the same crimes committed in the past six months, and the past two years have a 0.50 correlation.
 
-<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/correlation_plot.png" alt="drawing" width="800" height = "400"/>
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/correlation_plot.png" alt="drawing" width="700" height = "400"/>
 
 In summary, there is no significant relationship between the covariates and the treatment type. I applied three different tests to measure the significance of the associations—first, the chi-square test to calculate the association between two nominal categorical variables. Second, the Mann-Whitney test to discover correlations between a nominal input and an ordinal qualitative or discrete quantitative output variable. Third, an independent t-test to figure out differences in distribution among the experimentation groups on continuous numerical indicators. Tests with p-values above 0.05 signifies no relationship between the variables. Table 2 shows the summarized results of all the statistical tests, along with the test name.
 
