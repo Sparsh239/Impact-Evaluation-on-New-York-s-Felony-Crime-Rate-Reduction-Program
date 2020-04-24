@@ -24,67 +24,80 @@ Data preprocessing is the most essential step before getting into exploratory da
 1.  Binary outcome that measures any felony re-arrest in a 1-year period following the arrest
 
 
-### **Step 1: Read the datasets** <br>
->There are three datasets required in this analysis. The dataset belong to the Crime and Education Lab at UChicago. They come along with the repository when cloned in the Desktop.
+>### **Step 1: Read the datasets** <br>
+>>There are three datasets required in this analysis. The dataset belong to the Crime and Education Lab at UChicago. They come along with the repository when cloned in the Desktop.
 >> **arrest.csv**
 >>> *Contains information on the arrests made from 2008 to 2011*
->>>> - **person_id** : Unique identification for each individuals
->>>> - **arrest_date** : Arrest Date
->>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each person id, if arrested more than once
->>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
+>>> - **person_id** : Unique identification for each individuals
+>>> - **arrest_date** : Arrest Date
+>>> - **arrest_id** : Arrest ID for each arrest made. Note, there are more than one arrest id for each person id, if arrested more than once
+>>> - **law_code** : Type of Crime (Misdemeanor and Felony)
 
-<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png" alt="drawing" width="200" height = "100"/>
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_csv.png" alt="drawing" width="300" height = "100"/>
 
 >> *demo.csv*
 >>> *Demographic information of the people arrested*
->>>> - **person_id** : Unique identification for each individuals
->>>> - **gender** : Gender of the person arrested
->>>> - **bdate** : Birth Date of the person arrested
->>>> - **home_precinct** : Precinct number of the place where the arrests took place.
+>>> - **person_id** : Unique identification for each individuals
+>>> - **gender** : Gender of the person arrested
+>>> - **bdate** : Birth Date of the person arrested
+>>> - **home_precinct** : Precinct number of the place where the arrests took place.
 
-![demo_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/demo_csv.png)
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/demo_csv.png" alt="drawing" width="300" height = "100"/>
+
 >> **treatment_assignment.csv**
 >>> *Contains information on the precinct and treatment status (Treatment or Control)*
->>>> - **precinct** : Precinct number of the place where the arrests took place.
->>>> - **Treatment Status** : Treatment Status of the Precinct (Treatment or Control). Certain precincts >>>>                          were provided treatment and others were part of control group
+>>> - **precinct** : Precinct number of the place where the arrests took place.
+>>> - **Treatment Status** : Treatment Status of the Precinct (Treatment or Control). Certain precincts >>>>                          were provided treatment and others were part of control group
 
-![treatment_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/treatment_csv.png)
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/treatment_csv.png" alt="drawing" width="300" height = "100"/>
 
-2. ***Calculate the date 6 months ago , 2 years ago and one year later***
+> ###  **Step 2: Create columns with dates**
+Here we create three columns representing the following the dates:
+1. date_six_months_ago :date six months before the current arrest date
+2. date_two_years_ago : date two years before the current arrest date
+3. date_after_one_year: date one year after the current arrest date
+
 >>> We convert the date column in the arrests dataset in a date-time format using pandas.to_datetime(column_name,format='%Y/%m/%d')
+>>>> `arrests['arrest_date'] = pd.to_datetime(arrests['arrest_date'] ,format='%Y/%m/%d')``
 >>> We add three columns in the dataset using relativedelta library. The first column represents the six month before date for each observation. Similarly the second and third column represent date two years ago and one year later to the current date of the respective observation.
-
->>> Example Code
->>>> `from dateutil.relativedelta import *` <br>
->>>> `arrests['arrest_date'] = pd.to_datetime(arrests['arrest_date'] ,format='%Y/%m/%d') # Converting the column to Datetime`
 >>>> `arrests['arrest_date_six_months_ago'] = arrests['arrest_date'].apply(lambda x:x relativedelta(months = 6))`
+>>>> `from dateutil.relativedelta import *` <br>
 
-![treatment_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_updated.png)
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_updated.png" alt="drawing" width="300" height = "100"/>
 
-3. ***Subset cases into two datasets: post-implementation (After 1st January 2010) & pre-implementation (Before 1st January 2010)***
+
+> ###  **Step 3: Calculate the number of cases after January 2010**
+We subset the dataset with cases after January 2010. These are the people arrested after the program got implemented.
 >>> Example Code
 >>>> `arrests_post_implementation = arrests[arrests['arrest_date'] > datetime.datetime(2010,1,1)]`
 
-4. ***Calculate the following parameters for the people arrested post program implementation***
->>> In this step, we consider the dataframe with cases post program implementation (After 1st January 2010). Then, we calculate the number of felony and misdemeanor crimes commited by single person_id using the arrests dataset, which includes all the observations.
+> ###  **Step 4: Calculate the covariates representing number of crimes and outcome variable**
 >>**1)Number of Prior Misdemeanor Arrests (in the last 2 years)**
 >>**2)Number of Prior Felony Arrests (in the last 2 years)**
 >>**3)Number of Prior Misdemeanor Arrests (in the last 6 months)**
 >>**4)Number of Prior Felony Arrests (in the last 6 months)**
+>>**5)Binary Variable representing whether person commited felony crime in the next one year after intervention**
 >>> Example Code
->>>> `for each_row in arrests_post_implementation.iterrows():
-          person_id = getattr(row, 'person_id') # Through getattr, we obtain the person id at a particular row
-          arrest_id = getattr(row,'arrest_id')  # Again through getattr, we obtain the arrest id at a particular row
-          current_arrest_date = getattr(row,'arrest_date') # Again through getattr, we obtain the current arrest date
-          date_past_6_months = getattr(row, 'date_six_months_ago') # Date Six Months Ago from the current date
-          date_past_2_years = getattr(row, 'date_two_years_ago') # Date 2 years ago from the current date
-          date_after_one_year = getattr(row,'date_after_one_year') # Date after one year
-          cases = arrests[arrests['person_id'] == person_id] # Number of cases with each person id in the total dataset
+>>>> `for index,row in arrests_post_implementation.iterrows():
+          person_id = getattr(row, 'person_id')
+          cases = arrests[arrests['person_id'] == person_id] #Calculate total number of cases of a person id
+          # Subset the number of misdemeanor crimes between current arrest date and date six months ago
           misdemeanor_past_6_months = cases[(cases['law_code'] == 'misdemeanor') & ((
-          date_past_6_months < cases['arrest_date']) & (cases['arrest_date'] <= current_arrest_date))]
-          # Repeat the code above for felony crimes for 6 months and 2 years respectively`
+          date_past_6_months < cases['arrest_date']) & (cases['arrest_date'] <= current_arrest_date))]`
 
-![treatment_csv](https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/arrests_piml.png)
+> ###  **Step 5: Merge Demographic Dataset with the arrests_post_implementation dataset**
+Merge the demo.csv file with the arrests_post_implementation on the person_id, a unique identifier for person arrested.
+Later we calculate the age of the person by calculating the different between the current arrest date and the date of birth
+
+> ###  **Step 6: Merge the dataset calculated above with treatment status dataset**
+Merge the dataset calculated after merging demo.csv and arrests_post_implementation.csv with treatment_status.csv on home precinct.
+Dropping all the unnecessary variables we get the final columns in our dataset.
+
+> ###  **Step 7: Selecting the first time the person is arrested after intervention**
+To check the efficacy of the program, we will take the first case of each person id after January 2010. This means we are trying to see
+when the first time the person is arrested and provided intervention, does he or she commit another felony crime again in the next one year. 
+
+
 
 ## Getting Started
 
