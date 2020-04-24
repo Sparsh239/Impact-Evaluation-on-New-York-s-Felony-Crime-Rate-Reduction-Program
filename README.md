@@ -27,7 +27,7 @@ Treatment variable represents whether the person arrested was part of the treatm
 
 1.  Binary outcome that measures any felony re-arrest in a 1-year period following the arrest. If 1 means the person carried out a felony crime atleast once in the following one year after given intervention. We take the first intervention to base our results more accurately. If 0, means the person did not commit a felony crime in the next one year.
 
->#### ***Step 1: Read the datasets*** <br>
+>#### **Step 1: Read the datasets** <br>
 
 >>There are three datasets required in this analysis. The dataset belong to the Crime and Education Lab at UChicago. These datasets are uplaoded in the repository in the datasets section.
 
@@ -90,48 +90,48 @@ when the first time the person is arrested and provided intervention, does he or
 > After framing the dataset, we export the file as csv (Program_evaluation.csv)
 
 
-### **Script 2: exploratory_data_analysis.py**
-Exploratory Data Analysis analyzes various variables and graphs between the different covariates and the outcome variable itself.
 
->### **Step 1: Preprocessing Data** <br>
+### ** Run Script 2: exploratory_data_analysis.py**
+Exploratory Data Analysis performs descriptive statistics on the covariates. Moreover, it plots various graphs to show relationship between the distribution of covariates in the treatment and control group.
 
-We will remove all the columns that are not requred for exploratory data analysis. Further, in the gender column represented male and female categories in two ways (M/F) and (male/female), we represent them constantly (M/F)
+> #### **Step 1: Preprocessing Data** <br>
 
->### **Step 2: Subselect the individuals in the treatment and control group seperately** <br>
+> We will remove all the columns that are not requred for exploratory data analysis. Further, in the gender column represented male and female categories in two ways (M/F) and (male/female), we represent them constantly (M/F)
 
-We subselect the observations in the treatment group and the control group using the treatment_status variable.
+> #### **Step 2: Subselect the individuals in the treatment and control group seperately** <br>
 
->### **Step 3: Count plot on treatment status** <br>
+> We subselect the observations in the treatment group and the control group using the treatment_status variable.
 
-The count plot represents the number of observation boths in the treatment and control group.
+> #### **Step 3: Count plot on treatment status** <br>
 
->### **Step 4: Stacked Histogram: Crime Type and Treatment Status(Treatment or Control)** <br>
+> The count plot represents the number of observation both in the treatment and control group.
 
-Plots a stacked historgram with two bars representing the crime type on the x-axis and the counts on the y-axis.
+> #### **Step 4: Stacked Histogram: Crime Type and Treatment Status(Treatment or Control)** <br>
 
->### **Step 5: Stacked Histogram: Gender and Treatment Status(Treatment or Control)** <br>
+> Plots a stacked histogram with two bars representing the crime type on the x-axis and the counts on the y-axis.
 
-Plots a stacked historgram with two bars representing the gender on the x-axis and the counts on the y-axis.
+> #### **Step 5: Stacked Histogram: Gender and Treatment Status(Treatment or Control)** <br>
+> Plots a stacked historgram with two bars representing the gender on the x-axis and the counts on the y-axis.
 
->### **Step 6: Histogram Plot: Age and Treatment Group** <br>
+> #### **Step 6: Histogram Plot: Age and Treatment Group** <br>
 
-Plots a histogram with age of the observations in the treatment group on the x-axis and the counts on the y-axis.
+> Plots a histogram with age of the observations in the treatment group on the x-axis and the counts on the y-axis.
 
->### **Step 7: Histogram Plot: Age and Control Group** <br>
+> #### **Step 7: Histogram Plot: Age and Control Group** <br>
 
-Plots a histogram with age of the observations in the control group  on the x-axis and the counts on the y-axis.
+> Plots a histogram with age of the observations in the control group  on the x-axis and the counts on the y-axis.
 
->### **Step 8: 4x4 Histogram Plot: Past Crimes and Treatment Group** <br>
+> #### **Step 8: 4x4 Histogram Plot: Past Crimes and Treatment Group** <br>
 
-Plots a 4x4 histogram plot with  felony and misdemeanor crime in the past 6 months and two years of the partcipants in the treatment group  on the x-axis and the counts on the y-axis.
+> Plots a 4x4 histogram plot with  felony and misdemeanor crime in the past 6 months and two years of the partcipants in the treatment group  on the x-axis and the counts on the y-axis.
 
->### **Step 8: 4x4 Histogram Plot: Past Crimes and Control Group** <br>
+> #### **Step 8: 4x4 Histogram Plot: Past Crimes and Control Group** <br>
 
-Plots a 4x4 histogram plot with  felony and misdemeanor crime in the past 6 months and two years of the individuals in the control group  on the x-axis and the counts on the y-axis.
+> Plots a 4x4 histogram plot with  felony and misdemeanor crime in the past 6 months and two years of the individuals in the control group  on the x-axis and the counts on the y-axis.
 
->### **Step 9: Step 9: Descriptive Statistics table** <br>
+> #### **Step 9: Step 9: Descriptive Statistics table** <br>
 
-Descriptive Staistics of all the numerical variables: count, mean,std, min, max, quantiles,var, skew, kurt
+> Descriptive Statistics of all the numerical variables: count, mean, standard deviation , min, max, quantiles ,variance , skewness , kurtosis
 
 ## **Script 3: statistical_analysis.py**
 Performs statistical analysis on the merged dataset. The correlation and association analysis includes chi-square test, Mann-Whitney test, and Independent t-test. To confirm our analysis we use the logistic regression to show the effect of treatment on the possibility of a person. I represent the felony crime in the next one year after program intervention as Rearrest variable.
