@@ -23,15 +23,15 @@ Felony re-arrest is an ordinal categorical variable evaluated using the probit r
 
 <img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/regression_equation.png" alt="drawing" width="700" height = "200"/>
 
-####**Column a**. On average, a person given an on-spot intervention is associated with a 14.1 percent lower probability of getting arrested for felony again.
+#### **Column a**. On average, a person given an on-spot intervention is associated with a 14.1 percent lower probability of getting arrested for felony again.
 
-####**Column b**. Law code decreases the coefficient of treatment status at the same time is significant. A person with a misdemeanor crime has a 21.8 percent higher probability of committing a felony again, holding treatment status constant.
+#### **Column b**. Law code decreases the coefficient of treatment status at the same time is significant. A person with a misdemeanor crime has a 21.8 percent higher probability of committing a felony again, holding treatment status constant.
 
-####**Column c**.Including age further lowers the probability of an individual in the treatment group of committing a felony crime again. Now, a person given an on spot intervention has a 16.9 percent lower likelihood of still committing a felony crime holding age and law code constant. Alternatively, one unit increase in age is associated with a 3.5 percent increase in the felony re-arrest irrespective of treatment status and law code.
+#### **Column c**.Including age further lowers the probability of an individual in the treatment group of committing a felony crime again. Now, a person given an on spot intervention has a 16.9 percent lower likelihood of still committing a felony crime holding age and law code constant. Alternatively, one unit increase in age is associated with a 3.5 percent increase in the felony re-arrest irrespective of treatment status and law code.
 
 At this point, treatment status(treatment), law code(misdemeanor), and age are the only three significant variables. In conclusion, a person in the control group arrested for a misdemeanor crime with an average age of 29 years has a 3 percent higher probability of committing a felony crime again in comparison to an individual in the treatment group.
 
-####**Column d,e,f,g,h**. The coefficient on the treatment status and the age remains unaffected further, including gender, felony crime(  past six months and two years), and misdemeanor crimes( past six months and previous two years). However, the coefficient on the misdemeanor crime increases, but it becomes insignificant. All the subseauently included variables are insignificant.
+#### **Column d,e,f,g,h**. The coefficient on the treatment status and the age remains unaffected further, including gender, felony crime(  past six months and two years), and misdemeanor crimes( past six months and previous two years). However, the coefficient on the misdemeanor crime increases, but it becomes insignificant. All the subseauently included variables are insignificant.
 
 <img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/regression_model_covariates.png" alt="drawing" width="800" height = "400"/>
 
