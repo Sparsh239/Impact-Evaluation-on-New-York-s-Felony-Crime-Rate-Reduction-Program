@@ -4,7 +4,7 @@ This memo recommends continuing the program implemented by NYC District Attorney
 # **Exploratory Data Analysis**
 The post-implementation data considers 3662 observations (one observation for each person) further divided into treatment(1450) and control (2212) categories. Among the arrests made after January 2010, individuals with age spanned out between 8 years to 66 years had one past misdemeanor crime on average. Importantly, past misdemeanor crimes per person ranked up to 7 arrests in the past two years, while the felony crimes reached a maximum of four.  Generally, males crime rate is above the female crime rate irrespective of the treatment group and time of arrest.
 
-<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/Exploratory_data_analysis.png" alt="drawing" width="800" height = "300"/>
+<img src="https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program/blob/master/images/Exploratory_data_analysis.png" alt="drawing" width="700" height = "300"/>
 
 # **Statistical Analysis**
 >> *Correlations and Association Analysis**
