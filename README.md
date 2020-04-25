@@ -134,40 +134,52 @@ Exploratory Data Analysis performs descriptive statistics on the covariates. Mor
 > Descriptive Statistics of all the numerical variables: count, mean, standard deviation , min, max, quantiles ,variance , skewness , kurtosis
 
 ## **Script 3: statistical_analysis.py**
-Performs statistical analysis on the merged dataset. The correlation and association analysis includes chi-square test, Mann-Whitney test, and Independent t-test. To confirm our analysis we use the logistic regression to show the effect of treatment on the possibility of a person. I represent the felony crime in the next one year after program intervention as Rearrest variable.
+1. Correlation and Association tests using chi-square test, Mann-Whitney test, and Independent t-test.
 
->### **Step 1: Preprocessing Data** <br>
+2.  We perform logistic regression to show the effect of treatment on the possibility of a person. I represent the felony crime in the next one year after program intervention as "Rearrest" variable.
 
-We will remove all the columns that are not requred for exploratory data analysis. Further, in the gender column represented male and female categories in two ways (M/F) and (male/female), we represent them constantly (M/F)
+> #### **Step 1: Preprocessing Data** <br>
 
->### **Step 2: Correlation Plot between the numerical variables  (Spearman Correlation)** <br>
+> We will remove all the columns that are not requred for exploratory data analysis. Further, in the gender column represented male and female categories in two ways (M/F) and (male/female), we represent them constantly (M/F)
 
-Finds the correlation between the numerical variables using Spearman Correlation Test
+> #### **Step 2: Correlation Plot between the numerical variables  (Spearman Correlation)** <br>
 
->### **Step 3: Chi_square Test between Gender and Rearrest** <br>
+> Finds the correlation between the numerical variables using Spearman Correlation Test
 
-Since both Gender (M/F) and Rearrest(0/1) are both categorical variables, we use Chi-Square test. We check wether gender influences the chances of commiting a crime in the next one year after intervention.
+> #### **Step 3: Chi_square Test between Gender and Rearrest** <br>
 
->### **Step 4: Chi_square Test between treatment status and Rearrest** <br>
+> Since both Gender (M/F) and Rearrest(0/1) are both categorical variables, we use Chi-Square test. We check wether gender influences the chances of commiting a crime in the next one year after intervention.
 
-Since both treatment status (treatment and control) and Rearrest(0/1) are both categorical variables, we use Chi-Square test. We check whether being in the treatment group is associated with  committing a crime in the next one year after intervention.
+` import scipy.stats as stats
+V, p, dof, expected = stats.chi2_contingency(male_female) `
 
->### **Step 5: Independent T test between treatment status and Age** <br>
+> #### **Step 4: Chi_square Test between treatment status and Rearrest** <br>
 
-Since, the output variable is an continous numerical variable and input variable is an categorical variable , we use independent t-test. We are trying to see whether age differs in both the treatment and the control group.
+> Since both treatment status (treatment and control) and Rearrest(0/1) are both categorical variables, we use Chi-Square test. We check whether being in the treatment group is associated with  committing a crime in the next one year after intervention.
 
->### **Step 6: Chi_square Test between treatment status and Gender** <br>
+> #### **Step 5: Independent T test between treatment status and Age** <br>
 
-Since, both the input and the output variable are categorical, we us chi-square test. We are trying to see whether gender is associated with the treatment status.
+> Since, the output variable is an continous numerical variable and input variable is an categorical variable , we use independent t-test. We are trying to see whether age differs in both the treatment and the control group.
 
->### **Step 7: Mann Whitney Test between treatment status and Past Crimes** <br>
+`from scipy.stats import wilcoxon, ttest_1samp, mannwhitneyu
+u_statistic, pVal = stats.ttest_ind(eval_treat, eval_control)
+`
 
-Since, out input variable is categorical but output variable (felony and misdemeanor crimes in the past 6 months and two years) are discrete quantitative, we use the Mann-Whitney test. We dont apply the independent t-test since the quantitative variable is not normal and might reduce the accuracy.
+> #### **Step 6: Chi_square Test between treatment status and Gender** <br>
 
->### **Step 8: Chi-square between treatment status and precinct** <br>
+> Since, both the input and the output variable are categorical, we us chi-square test. We are trying to see whether gender is associated with the treatment status.
 
-Since, both the input and the output variable are categorical, we us chi-square test. We are trying to see whether gender is associated with the treatment status.
+> #### **Step 7: Mann Whitney Test between treatment status and Past Crimes** <br>
 
->### **Step 9: Probit Regression Model to find the effect of treatment on the rearrest** <br>
+> Since, out input variable is categorical but output variable (felony and misdemeanor crimes in the past 6 months and two years) are discrete quantitative, we use the Mann-Whitney test. We dont apply the independent t-test since the quantitative variable is not normal and might reduce the accuracy.
 
-We first implement a logistic regression model to see the effect of treatment on the probability of committing a felony crime in the next one year after intervention(Rearrest). We run a loop to add each covariates in the model, to check for omitted varibale bias and the covariates that are significant in the analysis. At the end, it gives a regression out table with the coeffciient value, standard error and significant of all the inpendent variables.
+`from scipy.stats import wilcoxon, ttest_1samp, mannwhitneyu
+u_statistic, pVal = stats.mannwhitneyu(eval_treat, eval_control)
+`
+> #### **Step 8: Chi-square between treatment status and precinct** <br>
+
+> Since, both the input and the output variable are categorical, we us chi-square test. We are trying to see whether gender is associated with the treatment status.
+
+> #### **Step 9: Probit Regression Model to find the effect of treatment on the rearrest** <br>
+
+> We first implement a logistic regression model to see the effect of treatment on the probability of committing a felony crime in the next one year after intervention(Rearrest). We run a loop to add each covariates in the model, to check for omitted varibale bias and the covariates that are significant in the analysis. At the end, it gives a regression out table with the coeffciient value, standard error and significant of all the inpendent variables.
