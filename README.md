@@ -91,7 +91,7 @@ when the first time the person is arrested and provided intervention, does he or
 
 
 
-### ** Run Script 2: exploratory_data_analysis.py**
+### **Run Script 2: exploratory_data_analysis.py**
 Exploratory Data Analysis performs descriptive statistics on the covariates. Moreover, it plots various graphs to show relationship between the distribution of covariates in the treatment and control group.
 
 > #### **Step 1: Preprocessing Data** <br>
