@@ -4,6 +4,12 @@
 Back in January 2010, the NYC District Attorney's office implemented a program designed to reduce the felony re-arrest rates city wide. The individuals arrested after the implementation of the program in certain precincts were provided with on-spot intervention by New York Policy Department. The DA's office hopes providing interventions will reduce the probability of arrested individuals committing a felony crime in the next one year. This repository evaluates the impact of the program developed by NYC District Attorney's office and recommends continuing the program after evaluating its impact on the felony re-arrest rate employing the probit regression model on the provided data.
 
 ## **Instructions**
+1. Install Anaconda Jupyter
+2. Download and Clone the directory from : https://github.com/Sparsh239/Impact-Evaluation-on-New-York-s-Felony-Crime-Rate-Reduction-Program.git
+3. Run Script 1 (data_preprocessing.py)
+4. Run Script 2 ()
+5. Run Script 3
+
 
 ### **Run Script 1: data_preprocessing.py**
 Data preprocessing is the most essential step before getting into exploratory data analysis, statistical analysis and probit modelling. Through data processing we create our dataset that will finally be utilized for further analysis.
@@ -57,10 +63,11 @@ Treatment variable represents whether the person arrested was part of the treatm
 >1. date_six_months_ago :date six months before the current arrest date
 >2. date_two_years_ago : date two years before the current arrest date
 >3. date_after_one_year: date one year after the current arrest date
+> `arrests['date_six_months_ago'] = arrests['arrest_date'].apply(lambda x:x - relativedelta(months = 6))`
 
 > ####  **Step 3: Calculate the number of cases after January 2010**
 
->We subset the dataset with cases after January 2010. These are the people arrested after the program got implemented.
+> We subset the dataset with cases after January 2010. These are the people arrested after the program got implemented.
 
 > ####  **Step 4: Calculate the covariates representing number of crimes and outcome variable**
 
@@ -70,22 +77,30 @@ Treatment variable represents whether the person arrested was part of the treatm
 > 4)Number of Prior Felony Arrests (in the last 6 months)<br>
 > 5)Binary Variable representing whether person commited felony crime in the next one year after intervention<br>
 
+> ` for index,row in arrests_post_implementation.iterrows():
+          person_id = getattr(row, 'person_id') # Person_is of the particular row
+          arrest_id = getattr(row,'arrest_id')  # Arrest id of the row
+          current_arrest_date = getattr(row,'arrest_date') # Current Arrest Date
+          date_past_6_months = getattr(row, 'date_six_months_ago') # Date Six Months Ago from the current date
+          date_past_2_years = getattr(row, 'date_two_years_ago') # Date 2 years ago from the current date
+          date_after_one_year = getattr(row,'date_after_one_year') # Date after one year
+          cases = arrests[arrests['person_id'] == person_id] # Number of cases with each person id
+          misdemeanor_past_6_months = cases[(cases['law_code'] == 'misdemeanor') & ((  #Select the crime type
+              date_past_6_months < cases['arrest_date']) & (cases['arrest_date'] <= current_arrest_date))]
+          # cases between the last six month and current_arrest date `
+
 > ####  **Step 5: Merge Demographic Dataset with the arrests_post_implementation dataset**
 
 >Merge the demo.csv file with the arrests_post_implementation on the person_id, a unique identifier for person arrested.
 Later we calculate the age of the person by calculating the different between the current arrest date and the date of birth
+>`merged_post_data = pd.merge(arrests_post_implementation,demo,on ='person_id')`
 
 > ####  **Step 6: Merge the dataset calculated above with treatment status dataset**
 
 >Merge the dataset calculated after merging demo.csv and arrests_post_implementation.csv with treatment_status.csv on home precinct.
 Dropping all the unnecessary variables we get the final columns in our dataset.
 
-> ####  **Step 7: Selecting the first time the person is arrested after intervention**
-
->To check the efficacy of the program, we will take the first case of each person id after January 2010. This means we are trying to see
-when the first time the person is arrested and provided intervention, does he or she commit another felony crime again in the next one year.
-
-> ####  **Step 8: Export the file as csv**
+> ####  **Step 7: Export the file as csv**
 
 > After framing the dataset, we export the file as csv (Program_evaluation.csv)
 
@@ -105,6 +120,7 @@ Exploratory Data Analysis performs descriptive statistics on the covariates. Mor
 > #### **Step 3: Count plot on treatment status** <br>
 
 > The count plot represents the number of observation both in the treatment and control group.
+``
 
 > #### **Step 4: Stacked Histogram: Crime Type and Treatment Status(Treatment or Control)** <br>
 
@@ -161,7 +177,7 @@ V, p, dof, expected = stats.chi2_contingency(male_female) `
 
 > Since, the output variable is an continous numerical variable and input variable is an categorical variable , we use independent t-test. We are trying to see whether age differs in both the treatment and the control group.
 
-`from scipy.stats import wilcoxon, ttest_1samp, mannwhitneyu
+> `from scipy.stats import wilcoxon, ttest_1samp, mannwhitneyu
 u_statistic, pVal = stats.ttest_ind(eval_treat, eval_control)
 `
 
@@ -173,7 +189,7 @@ u_statistic, pVal = stats.ttest_ind(eval_treat, eval_control)
 
 > Since, out input variable is categorical but output variable (felony and misdemeanor crimes in the past 6 months and two years) are discrete quantitative, we use the Mann-Whitney test. We dont apply the independent t-test since the quantitative variable is not normal and might reduce the accuracy.
 
-`from scipy.stats import wilcoxon, ttest_1samp, mannwhitneyu
+> `from scipy.stats import wilcoxon, ttest_1samp, mannwhitneyu
 u_statistic, pVal = stats.mannwhitneyu(eval_treat, eval_control)
 `
 > #### **Step 8: Chi-square between treatment status and precinct** <br>
