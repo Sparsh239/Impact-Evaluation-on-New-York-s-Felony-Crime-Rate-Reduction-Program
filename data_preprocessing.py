@@ -109,6 +109,5 @@ for person_id in unique_person_id:
     program_evaluation.append(cases_person_id.iloc[0]) # Takes the first case post implementation 
 
 post_program_evaluation_dataframe = pd.DataFrame(program_evaluation)
-print(post_program_evaluation_dataframe.head(5))
 post_program_evaluation_dataframe.to_csv("Datasets/Program_evaluation.csv")
 

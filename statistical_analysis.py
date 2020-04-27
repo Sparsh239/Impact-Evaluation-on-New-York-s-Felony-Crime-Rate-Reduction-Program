@@ -32,6 +32,7 @@ evaluation_correlation = evaluation_data[['misdemeanor_past_6_months',
        'felony_past_2_years','age']].corr(method = 'spearman')
 ax1 = sns.heatmap(evaluation_correlation,annot=True)
 ax1.set_title("plots/Correlation Plot (Spearman)")
+print("\n")
 #%%
 # Step 3: Chi_square Test between Gender and Rearrest 
 # HO: There is no relationship between the variables 
@@ -43,6 +44,7 @@ if p > 0.05:
     print("There is no relationship between gender and felony rearrest")
 else:
     print("There is a relationship between gender and felony rearrest")   
+print("\n")
 #%%   
 # Step 4: Chi_square Test between treatment status and Rearrest 
 # HO: There is no relationship between the variables 
@@ -55,6 +57,7 @@ if p > 0.05:
     print("There is no relationship between treatment type and felony rearrest")
 else:
     print("There is a relationship between tratment type and felony rearrest")
+print("\n")
 #%%
 # Step 5: Independent T test between treatment status and Age 
 eval_treat = evaluation_data.loc[evaluation_data['treatment_status']=='treatment', 'age']
@@ -64,9 +67,10 @@ print('Statistics=%.3f, p=%.3f' % (u_statistic, pVal))
 # interpret
 alpha = 0.05
 if pVal > alpha:
-	print('Same distribution (fail to reject H0)')
+	print('Same distribution between age and treatment status (fail to reject H0)')
 else:
-	print('Different distribution (reject H0)')
+	print('Different distribution between age and treatment status (reject H0)')
+print("\n")
 #%%
 # Step 6: Chi_square Test between treatment status and Gender  
 # HO: There is no relationship between the variables 
@@ -77,7 +81,8 @@ print(p)
 if p > 0.05:
     print("There is no relationship between gender and treatment status")
 else:
-    print("There is a relationship between gender and treatment status")     
+    print("There is a relationship between gender and treatment status")    
+print("\n")
 #%%   
 # Step 6: Chi_square Test between treatment status and Law Code (Misdemeanor or Felony)  
 # HO: There is no relationship between the variables 
@@ -88,7 +93,8 @@ print(p)
 if p > 0.05:
     print("There is no relationship between law code and treatment status")
 else:
-    print("There is a relationship between law code and treatment status")      
+    print("There is a relationship between law code and treatment status")  
+print("\n")    
 #%%
 
 # Step 9: Probit Regression Model to find the effect of treatment on the rearrest
@@ -103,25 +109,24 @@ for variable in columns:
     # interpret
     alpha = 0.05
     if pVal > alpha:
-    	print(variable,'and treatment group have same distribution (fail to reject H0)')
+    	print(variable,'and treatment group have same distribution (fail to reject H0) \n')
     else:
-    	print(variable,'and treatment group dont have same distribution (reject H0)')
+    	print(variable,'and treatment group dont have same distribution (reject H0)\n')
     # Thus there is no difference in the average age 
-
+print("\n")
 #%%
     
 # Step 8: Chi-square between treatment status and precinct
 evaluation_data['precinct'] = evaluation_data['precinct'].astype('category')
-print(evaluation_data['precinct'].value_counts())
 
 precinct = pd.crosstab(evaluation_data.precinct, evaluation_data.felony_in_one_year)
 
 V, p, dof, expected = stats.chi2_contingency(precinct) 
-print(p)
 if p > 0.05:
     print("There is no relationship between precinct and treatment status")
 else:
     print("There is a relationship between precinct and treatment status") 
+print("\n")
 #%%
 
 # Step 9: Perform logistic regression 

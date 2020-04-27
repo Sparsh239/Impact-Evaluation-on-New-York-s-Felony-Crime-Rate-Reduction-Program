@@ -199,3 +199,8 @@ u_statistic, pVal = stats.mannwhitneyu(eval_treat, eval_control)
 > #### **Step 9: Probit Regression Model to find the effect of treatment on the rearrest** <br>
 
 > We first implement a logistic regression model to see the effect of treatment on the probability of committing a felony crime in the next one year after intervention(Rearrest). We run a loop to add each covariates in the model, to check for omitted varibale bias and the covariates that are significant in the analysis. At the end, it gives a regression out table with the coeffciient value, standard error and significant of all the inpendent variables.
+
+### **Results**
+
+1. Plots folder contains all the plots developed in the exploratory_data_analysis.py
+2. results.md file contains the memo on the analysis provided by the repository.
